@@ -1,0 +1,144 @@
+﻿@* @model Hein.Models.PersonalCenter.ManageAccountViewModel *@
+@model dynamic
+@{
+    ViewData["Title"] = "Manage Account";
+    // Provide default values if model is null
+    var phoneNumber = Model?.Phone ?? "No phone number provided";
+    var email = Model?.Email ?? "No email provided";
+    var isEmailConfirmed = Model.EmailConfirmed;
+}
+
+@{
+    var profileInformationHeaderStyle = "fw-bold fs-5";
+    var labelStyle = "text-secondary small";
+    var valueStyle = "fw-medium";
+    var sectionStyle = "card border-0 shadow-sm p-4";
+}
+
+<style>
+    .info-group {
+        transition: all 0.3s ease;
+        padding: 8px;
+        border-radius: 4px;
+    }
+
+    .info-group:hover {
+        background-color: #f8f9fa;
+    }
+
+    .section-title {
+        position: relative;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: #000;
+    }
+
+    .form-check-input {
+        border-radius: 20px !important;
+        width: 3rem !important;
+        height: 1.5rem !important;
+        cursor: pointer;
+    }
+
+    .form-check-input:focus {
+        border-radius: 20px !important;
+    }
+
+    .form-switch .form-check-input {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+    }
+
+    .form-switch .form-check-input:checked {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+    }
+</style>
+
+<div class="d-flex flex-column gap-4">
+    @* Contact Information *@
+    <div class="@sectionStyle">
+        <h5 class="section-title">Account Information</h5>
+        <div class="d-flex flex-column gap-3">
+            <div class="row">
+                <div class="col-6">
+                    <div class="info-group mb-2">
+                        <div class="@labelStyle">Email Address</div>
+                        <div class="d-flex gap-3 align-items-center">
+                            <div class="@valueStyle">@email</div>
+                            @if (@isEmailConfirmed)
+                            {
+                                <div class="badge bg-success">
+                                    <i class="bi bi-exclamation-circle"></i>
+                                    <span class="">Verified</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="badge bg-danger gap-1">
+                                    <i class="bi bi-exclamation-circle"></i>
+                                    <span>Not Verified</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="ms-2">
+                        @if (!Model.EmailConfirmed)
+                    
+                        {
+                            <button class="btn btn-outline-success btn-sm">Verify Email</button>
+                        }
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="info-group">
+                        <div class="@labelStyle">Phone Number</div>
+                        <div class="@valueStyle">@phoneNumber</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* Account Settings *@
+    <div class="@sectionStyle">
+        <h5 class="section-title">Account Settings</h5>
+        <div class="d-flex flex-column gap-3">
+            <div class="info-group d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="@labelStyle">Email Marketing</div>
+                    <div class="@valueStyle">Subscribed</div>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" checked>
+                </div>
+            </div>
+            <div class="info-group d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="@labelStyle">Phone Marketing</div>
+                    <div class="@valueStyle">Subscribed</div>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" checked>
+                </div>
+            </div>
+            <div class="info-group d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="@labelStyle">Two-Factor Authentication</div>
+                    <div class="@valueStyle">Not Enabled</div>
+                </div>
+                <button class="btn btn-outline-dark btn-sm">Enable</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>

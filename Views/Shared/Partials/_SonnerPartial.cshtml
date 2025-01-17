@@ -1,0 +1,26 @@
+@using Hein.Helpers
+@model dynamic
+
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    @foreach (var key in new[] { SonnerHelper.SuccessKey, SonnerHelper.ErrorKey, SonnerHelper.InfoKey, SonnerHelper.WarningKey })
+    {
+        if (TempData[key] != null)
+        {
+            var bgClass = key switch
+            {
+                SonnerHelper.SuccessKey => "bg-success",
+                SonnerHelper.ErrorKey => "bg-danger",
+                SonnerHelper.InfoKey => "bg-info",
+                SonnerHelper.WarningKey => "bg-warning",
+                _ => "bg-dark"
+            };
+            
+            <div class="toast align-items-center text-white border-0 @bgClass sonner-toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000">
+                <div class="d-flex">
+                    <div class="toast-body">@TempData[key]</div>
+                    <button type="button" class="btn-close btn-close-white me-3 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        }
+    }
+</div>

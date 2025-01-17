@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Profile Center";
+}
+
+<div class="mt-3 pt-3 mb-5 pb-5 container p-0 d-flex flex-column gap-3">
+    <nav aria-label="breadcrumb" class="p-2">
+        <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item"><a href="/" class="text-decoration-none text-dark">Home</a></li>
+            <li class="breadcrumb-item active">Personal Center</li>
+        </ol>
+    </nav>
+
+    <div class="w-100 d-flex gap-4">
+        @* Sidebar *@
+        <div class="card border-0 shadow-sm" style="width: 350px;">
+            <partial name="Partials/_SidebarMenuPartial"/>
+        </div>
+
+        @* Main Content *@
+        <div class="flex-grow-1 px-2" id="mainContent">
+            <partial name="Partials/_PersonalCenter@(ViewBag.ActiveView)Partial" model="@ViewBag.Model"/>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/userNavigation.js"></script>
+    <script src="~/js/userPreferencesForm.js"></script>
+}

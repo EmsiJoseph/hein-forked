@@ -1,0 +1,82 @@
+@model Hein.Models.SignInViewModel
+@{
+    ViewData["Title"] = "Sign in";
+}
+
+<div class="container d-flex flex-column align-items-center mt-5 vh-100 gap-4">
+    <div class="d-flex flex-column align-items-center gap-4" style="width: 558px;">
+        <a class="w-100 d-flex gap-1 text-decoration-none text-dark" href="/auth">
+            <i class="bi bi-chevron-left"></i>
+            Back
+        </a>
+
+        <div class="d-flex flex-column gap-4 px-5">
+            <h5 class="text-center mb-2 fw-bold" style="font-family: var(--bold-h5-heading-font-family);">
+                Sign in with your account
+            </h5>
+
+            <form method="post" class="w-100 d-flex flex-column gap-4">
+                @Html.AntiForgeryToken()
+                <div class="d-flex flex-column gap-3">
+                    <div class="d-flex flex-column gap-2">
+                        <label asp-for="Email" class="small required" required>Email address</label>
+                        <div class="input-group">
+                            <input value="@Model.Email" aria-readonly="true" aria-label="Email address" readonly id="Email" asp-for="Email" type="text"
+                                   class="form-control"/>
+
+                            <a href="/auth" class="btn btn-dark">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+
+                    <div class="d-flex flex-column gap-2">
+                        <label asp-for="Password" class="small required" >Password</label>
+                        <div class="input-group">
+                            <input required aria-label="Password" asp-for="Password" type="password" class="form-control"/>
+                            <button class="btn btn-outline-dark toggle-password" type="button">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <input aria-label="Remember me" type="checkbox" asp-for="RememberMe" class="form-check-input"/>
+                        <label asp-for="RememberMe" class="form-check-label small">
+                            Remember me
+                        </label>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <input aria-label="Receive offers" type="checkbox" asp-for="EmailSubscription" class="form-check-input"/>
+                        <label asp-for="EmailSubscription" class="form-check-label small">
+                            I want to receive exclusive offers and latest news by email
+                        </label>
+                    </div>
+
+                    <a class="d-flex justify-content-end small text-decoration-none text-dark" href="#">
+                        Forgot your password?
+                    </a>
+                </div>
+
+                <button class="btn btn-dark w-100 fw-bold" type="submit">
+                    SIGN IN
+                </button>
+            </form>
+
+            <p class="terms-notice text-center small">
+                <span class="text-secondary">By signing in to your account, you agree to our </span>
+                <a href="#" class="text-primary text-decoration-none">Privacy & Cookie Policy</a>
+                <span class="text-secondary"> and </span>
+                <a href="#" class="text-primary text-decoration-none">Terms & Conditions</a>
+                <span class="text-secondary">.</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/togglePassword.js"></script>
+}

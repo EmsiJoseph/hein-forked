@@ -1,0 +1,250 @@
+﻿@{
+    var menuHeaderStyle = "fs-5 text-dark fw-bold d-flex justify-content-between align-items-center cursor-pointer menu-header p-1";
+    var menuItemStyle = "menu-item d-flex align-items-center gap-2 ps-4 py-2";
+    var badgeStyle = "badge rounded-pill text-white";
+}
+<style>
+    .menu-header {
+        transition: all 0.3s ease;
+        border-radius: 4px;
+    }
+
+    .menu-item span.badge {
+        background-color: orangered;
+    }
+
+    .menu-item:hover {
+        background-color: #f8f9fa;
+    }
+
+    .menu-item.active {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+
+    .menu form.button.personal-center-signout-btn {
+        color: #dc3545;
+    }
+
+    .menu form.button.personal-center-signout-btn:hover {
+        color: #f8d7da;
+        background-color: #dc3545;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    .collapse {
+        transition: all 0.3s ease;
+    }
+
+    .badge {
+        font-size: 0.7em;
+    }
+
+    .personal-center-signout-btn {
+        transition: all 0.3s ease;
+        border: 1px solid #dc3545;
+        color: #dc3545;
+    }
+
+    .personal-center-signout-btn:hover {
+        background-color: #dc3545;
+        color: white;
+    }
+</style>
+
+
+<div class="card-body p-4">
+    <h5 class="text-dark fw-bolder mb-4 cursor-pointer menu-title">Personal Center</h5>
+    <div class="d-flex flex-column gap-2">
+
+        @* Menus with Expand/Collapse *@
+        <div>
+            <h5 class="@menuHeaderStyle" data-bs-toggle="collapse" data-bs-target="#myAccountMenu"
+                aria-expanded="false">
+                My Account
+                <i class="bi bi-plus"></i>
+            </h5>
+            <div id="myAccountMenu" class="collapse">
+                <ul class="list-unstyled">
+                    <li class="@menuItemStyle"><i class="bi bi-shop-window"></i><a href="#"
+                                                                                   class="text-decoration-none text-dark">HEIN
+                            VIP</a></li>
+                    <li class="@menuItemStyle @(ViewBag.ActiveView == "Profile" ? "active" : "")"
+                        data-view="Profile">
+                        <a href="#" class="text-decoration-none text-dark d-flex align-items-center gap-2 w-100">
+                            <i class="bi bi-person"></i>
+                            <span>My Profile</span>
+                        </a>
+                        <span class="@badgeStyle ms-2">+POINTS</span>
+                    </li>
+                    <li class="@menuItemStyle"><i class="bi bi-geo-alt"></i><a href="#"
+                                                                               class="text-decoration-none text-dark">Address
+                            Book</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-credit-card"></i><a href="#"
+                                                                                   class="text-decoration-none text-dark">My
+                            Payment Options</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-rulers"></i><a href="#"
+                                                                              class="text-decoration-none text-dark">My
+                            Measurements</a></li>
+                    <li class="@menuItemStyle @(ViewBag.ActiveView == "ManageAccount" ? "active" : "")"
+                        data-view="ManageAccount">
+                        <a href="#" class="text-decoration-none text-dark d-flex align-items-center gap-2 w-100">
+                            <i class="bi bi-gear"></i>
+                            <span>Manage My Account</span>
+                        </a>
+                        <span class="@badgeStyle ms-2">+POINTS</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <h5 class="@menuHeaderStyle" data-bs-toggle="collapse" data-bs-target="#myAssetsMenu"
+                aria-expanded="false">
+                My Assets
+                <i class="bi bi-plus"></i>
+            </h5>
+            <div id="myAssetsMenu" class="collapse">
+                <ul class="list-unstyled">
+                    <li class="@menuItemStyle"><i class="bi bi-ticket-perforated"></i><a href="#"
+                                                                                         class="text-decoration-none text-dark">My
+                            Coupons</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-wallet"></i><a href="#"
+                                                                              class="text-decoration-none text-dark">My
+                            Points</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-cash"></i><a href="#"
+                                                                            class="text-decoration-none text-dark">My
+                            Wallet</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-gift"></i><a href="#"
+                                                                            class="text-decoration-none text-dark">Gift
+                            Card</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <h5 class="@menuHeaderStyle" data-bs-toggle="collapse" data-bs-target="#myOrdersMenu"
+                aria-expanded="false">
+                My Orders
+                <i class="bi bi-plus"></i>
+            </h5>
+            <div id="myOrdersMenu" class="collapse">
+                <ul class="list-unstyled">
+                    <li class="@menuItemStyle"><i class="bi bi-list"></i><a href="#"
+                                                                            class="text-decoration-none text-dark">All
+                            Orders</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-cash-stack"></i><a href="#"
+                                                                                  class="text-decoration-none text-dark">Unpaid
+                            Orders</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-clock-history"></i><a href="#"
+                                                                                     class="text-decoration-none text-dark">Processing
+                            Orders</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-box"></i><a href="#"
+                                                                           class="text-decoration-none text-dark">Shipped
+                            Orders</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-chat-dots"></i><a href="#"
+                                                                                 class="text-decoration-none text-dark">Review
+                            Orders</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-arrow-counterclockwise"></i><a href="#"
+                                                                                              class="text-decoration-none text-dark">Return
+                            Orders</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <h5 class="@menuHeaderStyle" data-bs-toggle="collapse" data-bs-target="#myFavoritesMenu"
+                aria-expanded="false">
+                My Favorites
+                <i class="bi bi-plus"></i>
+            </h5>
+            <div id="myFavoritesMenu" class="collapse">
+                <ul class="list-unstyled">
+                    <li class="@menuItemStyle"><i class="bi bi-heart"></i><a href="#"
+                                                                             class="text-decoration-none text-dark">Wish
+                            List</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-eye"></i><a href="#"
+                                                                           class="text-decoration-none text-dark">Recently
+                            Viewed</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-star"></i><a href="#"
+                                                                            class="text-decoration-none text-dark">Follow</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <h5 class="@menuHeaderStyle" data-bs-toggle="collapse" data-bs-target="#customerServiceMenu"
+                aria-expanded="false">
+                Customer Service
+                <i class="bi bi-plus"></i>
+            </h5>
+            <div id="customerServiceMenu" class="collapse">
+                <ul class="list-unstyled">
+                    <li class="@menuItemStyle"><i class="bi bi-envelope"></i><a href="#"
+                                                                                class="text-decoration-none text-dark">MY
+                            MESSAGE</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-card-text"></i><a href="#"
+                                                                                 class="text-decoration-none text-dark">Service
+                            Records</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <h5 class="@menuHeaderStyle" data-bs-toggle="collapse" data-bs-target="#otherServicesMenu"
+                aria-expanded="false">
+                Other Services
+                <i class="bi bi-plus"></i>
+            </h5>
+            <div id="otherServicesMenu" class="collapse">
+                <ul class="list-unstyled">
+                    <li class="@menuItemStyle"><i class="bi bi-gift"></i><a href="#"
+                                                                            class="text-decoration-none text-dark">My
+                            Free Trial</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-clipboard"></i><a href="#"
+                                                                                 class="text-decoration-none text-dark">Survey
+                            Center</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-share"></i><a href="#"
+                                                                             class="text-decoration-none text-dark">Share
+                            & Earn</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-sliders"></i><a href="#"
+                                                                               class="text-decoration-none text-dark">Contact
+                            Preferences</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <h5 class="@menuHeaderStyle" data-bs-toggle="collapse" data-bs-target="#policyMenu"
+                aria-expanded="false">
+                Policy
+                <i class="bi bi-plus"></i>
+            </h5>
+            <div id="policyMenu" class="collapse">
+                <ul class="list-unstyled">
+                    <li class="@menuItemStyle"><i class="bi bi-truck"></i><a href="#"
+                                                                             class="text-decoration-none text-dark">Shipping
+                            Info</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-arrow-return-left"></i><a href="#"
+                                                                                         class="text-decoration-none text-dark">Return
+                            Policy</a></li>
+                    <li class="@menuItemStyle"><i class="bi bi-shield-lock"></i><a href="#"
+                                                                                   class="text-decoration-none text-dark">Privacy
+                            & Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <form method="post" asp-controller="Auth" asp-action="SignOut">
+                <button type="submit" class="btn personal-center-signout-btn w-100">
+                    <i class="bi bi-box-arrow-right me-2"></i>Sign Out
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

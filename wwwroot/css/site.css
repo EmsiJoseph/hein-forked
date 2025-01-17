@@ -1,0 +1,69 @@
+/* General Styles */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.a {
+    text-decoration: none !important;
+    font-weight: normal !important;
+    color: inherit;
+}
+
+.a:hover {
+    text-decoration: none;
+}
+
+/* Reset border-radius for buttons, input boxes, etc. */
+.btn,
+.form-control,
+.input-group-text,
+.dropdown-toggle,
+.navbar-toggler,
+.card,
+.modal-content,
+.form-check-input {
+    border-radius: 0 !important;
+}
+
+/* Additional resets for specific focus styles */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    border-radius: 0 !important;
+}
+
+/* Required field indicator */
+label.required::after {
+    content: '*';
+    color: var(--bs-danger);
+    margin-left: 1px;
+}
+
+
+/* When the checkbox is checked */
+.form-check-input:checked {
+    background-color: black; /* Black background */
+    border-color: black; /* Black border */
+}

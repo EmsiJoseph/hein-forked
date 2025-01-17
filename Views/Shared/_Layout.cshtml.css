@@ -1,0 +1,179 @@
+﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification */
+
+h1.navbar-brand {
+    font-family: "LEMON MILK-Medium", Helvetica;
+    font-weight: 600;
+    color: var(--defaultblack);
+    font-size: 40px;
+    letter-spacing: 12px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    height: 100%;
+}
+
+.search-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid var(--defaultblack);
+}
+
+/* Navbar Categories */
+.navbar-categories {
+    position: relative;
+    z-index: 2;
+}
+
+.nav-categories-btn {
+    font-weight: 500;
+    padding: 0.5rem 0;
+    color: var(--defaultblack);
+    font-size: 0.9rem;
+}
+
+.navbar-scroll {
+    overflow: hidden;
+    margin-right: 4rem;
+}
+
+.nav-items-container {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.nav-items-container::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-items {
+    display: flex;
+    white-space: nowrap;
+    gap: 1rem;
+}
+
+.nav-items .nav-link {
+    color: var(--defaultblack);
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.nav-arrow-btn {
+    padding: 0.25rem;
+    color: var(--defaultblack);
+}
+
+.nav-arrow-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.navbar-arrows {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 25%);
+    padding-left: 2rem;
+}
+
+/* Footer */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+}
+
+.icon-with-menu {
+    position: relative;
+    display: inline-block; /* Add this */
+}
+
+/* Update menu default positioning */
+.menu {
+    display: none;
+    position: absolute;
+    top: calc(100%);
+    left: auto;
+    transform: none;
+    margin: 0;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    min-width: 240px;
+    max-width: calc(100vw - 40px);
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    transition: none;
+}
+
+/* Left aligned menus */
+.icon-with-menu.left-align .menu {
+    left: 0;
+    right: auto;
+    transform: none;
+}
+
+/* Right aligned menus */
+.icon-with-menu.right-align .menu {
+    left: auto;
+    right: 0;
+    transform: none;
+}
+
+/* Middle aligned menus */
+.icon-with-menu.middle-align .menu {
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.65rem 1.5rem;
+    color: #2c2d33;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.menu a:hover {
+    background-color: #f8f9fa;
+    color: #000000;
+}
+
+.menu a.signout-btn {
+    color: #dc3545;
+}
+
+.menu a.signout-btn:hover {
+    color: #f8d7da;
+    background-color: #dc3545;
+}
+
+.menu .dropdown-divider {
+    margin: 0.5rem 0;
+}
+
+@media (max-width: 768px) {
+    .icon-with-menu.middle-align .menu {
+        left: auto;
+        right: 0;
+        transform: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu {
+        right: 0;
+        min-width: 200px;
+    }
+}

@@ -1,0 +1,86 @@
+@model Hein.Models.SignInOrRegisterViewModel
+@{
+    ViewData["Title"] = "Sign In/Register";
+}
+
+<div class="container d-flex align-items-center justify-content-center vh-100">
+    <div class="d-flex flex-column align-items-center gap-4 px-5" style="width: 558px;">
+        <div class="text-center d-flex flex-column align-items-center">
+            <h5 class="fw-bold" style="font-family: var(--bold-h5-heading-font-family);">Sign in/Register</h5>
+            <div class="d-flex align-items-center gap-1 text-success">
+                <i class="bi bi-lock"></i>
+                <small>Your data is protected</small>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <span class="badge bg-success rounded-pill mb-2 fs-6">GET P150 OFF ON YOUR FIRST ORDER</span>
+            <p class="small" style="font-family: var(--body-small-font-family);">
+                <span class="fw-bold">CODE:</span> WELCOMEPH
+            </p>
+        </div>
+
+        <form id="loginForm" class="w-100" method="post">
+            @Html.AntiForgeryToken()
+            <div class="mb-4">
+                <label class="small mb-2 required">Mobile number or email address</label>
+                <div class="input-group">
+                    <select asp-for="CountryCode" class="form-select" style="max-width: 100px; display: none"
+                            id="countryCode">
+                        <option value="+63">🇵🇭 +63</option>
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+44">🇬🇧 +44</option>
+                    </select>
+                    <input value="@Model.Email" autofocus id="mainInput" type="text" class="form-control"
+                           placeholder="Email or phone number"/>
+                    <input type="hidden" asp-for="Email" id="emailField"/>
+                    <input type="hidden" asp-for="Phone" id="phoneField"/>
+                    <input type="hidden" asp-for="ActiveField" id="activeField"/>
+                </div>
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+            <button type="submit" class="btn btn-dark w-100 fw-bold">CONTINUE</button>
+        </form>
+
+        <div class="divider d-flex align-items-center gap-3 w-100">
+            <hr class="flex-grow-1"/>
+            <span class="text-secondary">Or</span>
+            <hr class="flex-grow-1"/>
+        </div>
+
+        <div class="w-100 d-flex flex-column gap-2">
+
+            <a href="@Url.Action("Login", "ExternalLogin", new { provider = "Google", returnUrl = "/" })"
+               class="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center gap-2 form-control">
+                <i class="bi bi-google"></i>
+                Continue with Google
+            </a>
+
+
+            <button class="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-microsoft"></i>
+                Continue with Microsoft
+            </button>
+        </div>
+
+        <div class="country-selector">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-geo-alt"></i>
+                <span>Philippines</span>
+                <i class="bi bi-chevron-down"></i>
+            </div>
+        </div>
+
+        <p class="terms-notice text-center small">
+            <span class="text-secondary">By continuing, you agree to our </span>
+            <a href="#" class="text-primary text-decoration-none">Privacy & Cookie Policy</a>`
+            <span class="text-secondary"> and </span>
+            <a href="#" class="text-primary text-decoration-none">Terms & Conditions</a>
+            <span class="text-secondary">.</span>
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="@Url.Content("~/Views/Auth/Index.cshtml.js")"></script>
+}

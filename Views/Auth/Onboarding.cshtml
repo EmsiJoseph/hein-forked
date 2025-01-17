@@ -1,0 +1,129 @@
+@model Hein.Models.OnboardingViewModel
+@{
+    ViewData["Title"] = "Onboarding";
+}
+
+<div class="container d-flex flex-column align-items-center mt-5 vh-100 gap-4">
+    <div class="d-flex flex-column align-items-center gap-4" style="width: 558px;">
+
+        <div class="d-flex flex-column gap-4 px-5 align-items-center">
+            <div class="text-center d-flex flex-column align-items-center">
+                <h5 class="fw-bold" style="font-family: var(--bold-h5-heading-font-family);">Tell us about yourself</h5>
+                <div class="d-flex align-items-center gap-1 text-success">
+                    <i class="bi bi-person"></i>
+                    <small>Please complete your profile</small>
+                </div>
+            </div>
+
+
+            <div class="small" style="color: var(--gray-600);">
+                Share a few details about yourself so we can tailor your HEIN experience to your unique style.
+            </div>
+
+            <!-- Use Razor Pages form submission -->
+            <form method="post" class="w-100 d-flex flex-column gap-3">
+                @Html.AntiForgeryToken()
+                <input aria-hidden="true" type="hidden" asp-for="Latitude"/>
+                <input aria-hidden="true" type="hidden" asp-for="Longitude"/>
+                <div class="d-flex flex-column gap-2">
+                    <div class="d-flex gap-2 justify-content-between">
+                        <div class="d-flex flex-column gap-2 w-100">
+                            <label asp-for="FirstName" class="small required">First name
+
+                            </label>
+                            <input aria-label="First name"
+                                   aria-required="true"
+                                   autofocus
+                                   asp-for="FirstName"
+                                   type="text"
+                                   class="form-control"/>
+                            <span asp-validation-for="FirstName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-flex flex-column gap-2 w-100">
+                            <label asp-for="LastName" class="small required">Last name</label>
+                            <input aria-label="Last name"
+                                   aria-required="true"
+                                   asp-for="LastName"
+                                   type="text"
+                                   class="form-control"/>
+                            <span asp-validation-for="LastName" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2 justify-content-between">
+                        <div class="d-flex flex-column gap-2 w-75">
+                            <label asp-for="Dob" class="small required">Date of birth</label>
+                            <input aria-label="Date of birth"
+                                   aria-required="true"
+                                   asp-for="Dob"
+                                   type="date"
+                                   class="form-control"/>
+                            <span asp-validation-for="Dob" class="text-danger small"></span>
+                        </div>
+                        <div class="d-flex flex-column gap-2 w-25">
+                            <label asp-for="Gender" class="small required">Gender</label>
+                            <select aria-label="Select gender"
+                                    aria-required="true"
+                                    required
+                                    asp-for="Gender"
+                                    class="form-select">
+                                <option value="">Select</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="PreferNotToSay">Prefer not to say</option>
+                            </select>
+                            <span asp-validation-for="Gender" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column gap-2 w-100">
+                        <label class="small required">Style preferences</label>
+                        <input type="hidden" asp-for="StylePreference" id="stylePreferenceInput"/>
+                        <div class="preferences-container">
+                            @using System.Text.RegularExpressions
+                            @* TODO: Change the style of the preference boxes to be consistent with the style in the profile *@
+                            <div class="d-flex flex-wrap gap-3">
+                                @foreach (var preference in new[] { "Women", "Men", "PlusSize", "Kids", "Home", "PetSupplies", "Accessories", "Beauty" })
+                                {
+                                    var formattedLabel = Regex.Replace(preference, "(?<!^)([A-Z])", " $1"); // Add space before uppercase letters except the first
+                                    <div class="form-check">
+                                        <input class="form-check-input preference-checkbox"
+                                               type="checkbox"
+                                               value="@preference"
+                                               id="@(preference.ToLower())Check"
+                                               name="StylePreference"
+                                               @(Model.StylePreference?.Contains(preference) == true ? "checked" : "")/>
+                                        <label class="form-check-label small"
+                                               for="@(preference.ToLower())Check">@formattedLabel</label>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                        <div id="preferenceValidation" class="text-danger small" style="display: none;">
+                            Please select at least 5 preferences
+                        </div>
+                    </div>
+                </div>
+
+                <button aria-label="Continue to next step"
+                        class="btn btn-dark w-100 fw-bold"
+                        type="submit">CONTINUE
+                </button>
+            </form>
+
+            <p class="terms-notice text-center small">
+                <span class="text-secondary">By continuing, you agree to our </span>
+                <a href="#" class="text-primary text-decoration-none">Privacy & Cookie Policy</a>
+                <span class="text-secondary"> and </span>
+                <a href="#" class="text-primary text-decoration-none">Terms & Conditions</a>
+                <span class="text-secondary">.</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="@Url.Content("~/Views/Auth/Onboarding.cshtml.js")"></script>
+}
